@@ -20,7 +20,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ../../backend
     container_name: opsmind-backend
     ports:
       - "8080:8080"
@@ -42,7 +42,7 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ../../frontend
     container_name: opsmind-frontend
     ports:
       - "80:80"
@@ -55,7 +55,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ../../monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     depends_on:
       - backend
 
@@ -69,8 +69,8 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_USERS_ALLOW_SIGN_UP=false
     volumes:
-      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
-      - ./monitoring/grafana/dashboards:/etc/grafana/dashboards:ro
+      - ../../monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../../monitoring/grafana/dashboards:/etc/grafana/dashboards:ro
       - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus

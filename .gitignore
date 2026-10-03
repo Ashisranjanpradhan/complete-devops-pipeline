@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+Git/
+**/target/
+**/dist/
+node_modules/
+*.class
+*.jar
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl

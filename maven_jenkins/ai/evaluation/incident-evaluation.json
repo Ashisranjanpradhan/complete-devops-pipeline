@@ -1,0 +1,136 @@
+[
+  {
+    "id": "CASE-01",
+    "name": "Database connection exhaustion",
+    "service": "payment-service",
+    "context": {
+      "deployment_version": "v2.8.1",
+      "minutes_since_deployment": 7,
+      "latency_ms": 2100.0,
+      "error_rate_percent": 14.2,
+      "cpu_percent": 74.0,
+      "db_connection_utilization_percent": 95.0
+    },
+    "expected": {
+      "root_cause_keywords": ["connection", "pool", "exhaustion", "saturation", "leak", "hikari"],
+      "recommended_action_keywords": ["rollback", "pool size", "timeout"],
+      "min_confidence": 0.85,
+      "risk_level": "CRITICAL"
+    }
+  },
+  {
+    "id": "CASE-02",
+    "name": "Memory leak runaway JVM heap",
+    "service": "order-service",
+    "context": {
+      "deployment_version": "v3.1.2",
+      "minutes_since_deployment": 45,
+      "latency_ms": 1450.0,
+      "error_rate_percent": 8.5,
+      "cpu_percent": 88.0,
+      "memory_percent": 96.0,
+      "db_connection_utilization_percent": 45.0
+    },
+    "expected": {
+      "root_cause_keywords": ["memory", "leak", "heap", "garbage collection", "oom"],
+      "recommended_action_keywords": ["heap dump", "restart", "rollback", "scale"],
+      "min_confidence": 0.80,
+      "risk_level": "HIGH"
+    }
+  },
+  {
+    "id": "CASE-03",
+    "name": "Bad deployment regression",
+    "service": "auth-service",
+    "context": {
+      "deployment_version": "v1.4.3",
+      "minutes_since_deployment": 3,
+      "latency_ms": 350.0,
+      "error_rate_percent": 35.0,
+      "cpu_percent": 40.0,
+      "db_connection_utilization_percent": 50.0
+    },
+    "expected": {
+      "root_cause_keywords": ["deployment", "regression", "release", "commit"],
+      "recommended_action_keywords": ["rollback", "revert"],
+      "min_confidence": 0.90,
+      "risk_level": "CRITICAL"
+    }
+  },
+  {
+    "id": "CASE-04",
+    "name": "External payment gateway timeout",
+    "service": "payment-service",
+    "context": {
+      "deployment_version": "v2.8.0",
+      "minutes_since_deployment": 1440,
+      "latency_ms": 4500.0,
+      "error_rate_percent": 18.0,
+      "cpu_percent": 35.0,
+      "db_connection_utilization_percent": 42.0
+    },
+    "expected": {
+      "root_cause_keywords": ["external", "gateway", "third-party", "upstream", "timeout"],
+      "recommended_action_keywords": ["circuit breaker", "fallback", "retry"],
+      "min_confidence": 0.75,
+      "risk_level": "HIGH"
+    }
+  },
+  {
+    "id": "CASE-05",
+    "name": "High CPU thread starvation",
+    "service": "notification-service",
+    "context": {
+      "deployment_version": "v1.0.5",
+      "minutes_since_deployment": 300,
+      "latency_ms": 1200.0,
+      "error_rate_percent": 6.0,
+      "cpu_percent": 98.0,
+      "db_connection_utilization_percent": 40.0
+    },
+    "expected": {
+      "root_cause_keywords": ["cpu", "thread", "starvation", "worker"],
+      "recommended_action_keywords": ["thread dump", "scale out", "rate limit"],
+      "min_confidence": 0.80,
+      "risk_level": "HIGH"
+    }
+  },
+  {
+    "id": "CASE-06",
+    "name": "Unindexed slow database query backlog",
+    "service": "order-service",
+    "context": {
+      "deployment_version": "v3.1.0",
+      "minutes_since_deployment": 120,
+      "latency_ms": 3200.0,
+      "error_rate_percent": 7.5,
+      "cpu_percent": 65.0,
+      "db_connection_utilization_percent": 86.0
+    },
+    "expected": {
+      "root_cause_keywords": ["slow query", "index", "database", "table scan", "lock"],
+      "recommended_action_keywords": ["explain analyze", "add index", "kill slow query"],
+      "min_confidence": 0.82,
+      "risk_level": "HIGH"
+    }
+  },
+  {
+    "id": "CASE-07",
+    "name": "Configuration mismatch / Invalid secret",
+    "service": "auth-service",
+    "context": {
+      "deployment_version": "v1.4.2",
+      "minutes_since_deployment": 10,
+      "latency_ms": 110.0,
+      "error_rate_percent": 50.0,
+      "cpu_percent": 25.0,
+      "db_connection_utilization_percent": 30.0
+    },
+    "expected": {
+      "root_cause_keywords": ["configuration", "secret", "credentials", "env", "unauthorized"],
+      "recommended_action_keywords": ["check config", "verify secret", "env variables"],
+      "min_confidence": 0.85,
+      "risk_level": "CRITICAL"
+    }
+  }
+]

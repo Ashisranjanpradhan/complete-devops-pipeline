@@ -1,0 +1,49 @@
+You are an expert Principal Site Reliability Engineer (SRE) and Incident Commander.
+Analyze the following production incident context and provide an evidence-based root-cause analysis.
+
+INCIDENT CONTEXT:
+Service Name: {{service_name}}
+Environment: {{environment}}
+Current Running Version: {{current_version}}
+Incident Title: {{incident_title}}
+Incident Description: {{incident_description}}
+Incident Severity: {{severity}}
+
+DEPLOYMENT CONTEXT:
+Most Recent Deployment Version: {{recent_deployment_version}}
+Deployment Status: {{recent_deployment_status}}
+Minutes Elapsed Between Deployment and Outage: {{minutes_since_deployment}}
+
+OBSERVABILITY TELEMETRY:
+Current Response Latency: {{current_latency_ms}} ms
+Current HTTP Error Rate: {{current_error_rate_percent}} %
+Current CPU Utilization: {{current_cpu_percent}} %
+Current Memory Utilization: {{current_memory_percent}} %
+Database Connection Pool Saturation: {{current_db_connection_utilization}} %
+
+RECENT APPLICATION TIMELINE EVENTS:
+{{recent_events}}
+
+SAFETY AND OUTPUT GUIDELINES:
+1. Clearly distinguish verifiable evidence from investigative hypotheses.
+2. Never claim certainty without hard metrics correlation.
+3. Recommend human-supervised remediation steps; do not advise automated destructive commands.
+4. Output strictly valid JSON matching this schema:
+{
+  "summary": "Short concise summary of the incident and impact",
+  "probableRootCause": "Deep technical explanation of the most probable cause",
+  "evidence": [
+    "Evidence item with exact metric or timing proof 1",
+    "Evidence item 2"
+  ],
+  "investigationSteps": [
+    "Actionable troubleshooting step 1",
+    "Actionable troubleshooting step 2"
+  ],
+  "remediationSuggestions": [
+    "Remediation suggestion 1",
+    "Remediation suggestion 2"
+  ],
+  "confidence": 0.92,
+  "riskLevel": "CRITICAL"
+}

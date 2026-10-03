@@ -1,0 +1,5 @@
+Analyze telemetry anomalies against code commits to identify root-cause vectors:
+- Correlate change timestamps with error-rate inflection points.
+- Assess resource exhaustion triggers (DB connections, memory allocation rate, thread pool queue depth).
+- Differentiate software regression from external infrastructure failure.
+- Highlight specific configuration flags or schema alterations responsible.

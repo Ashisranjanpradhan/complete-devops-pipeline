@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15-alpine
+    container_name: opsmind-db
+    environment:
+      POSTGRES_USER: opsmind_user
+      POSTGRES_PASSWORD: opsmind_password
+      POSTGRES_DB: opsmind_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U opsmind_user -d opsmind_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: opsmind-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/opsmind_db
+      - SPRING_DATASOURCE_USERNAME=opsmind_user
+      - SPRING_DATASOURCE_PASSWORD=opsmind_password
+      - SPRING_PROFILES_ACTIVE=prod
+      - JWT_SECRET=8f45a6c3f0b24e6a8e3d64c129f170b92d6e352b9f848f44d18725890eab12f4
+      - JWT_EXPIRATION=86400000
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: opsmind-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

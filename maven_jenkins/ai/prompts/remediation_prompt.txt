@@ -1,0 +1,8 @@
+Formulate safe, prioritized mitigation steps for on-call engineers:
+1. Immediate Blast-Radius Mitigation:
+   - Identify whether immediate version rollback is warranted (check rollback prerequisites).
+   - Evaluate traffic shedding, rate-limiting, or feature-flag deactivation options.
+2. Short-term Stabilization:
+   - Dynamic scaling, connection pool adjustments, or cache invalidation.
+3. Post-Incident Permanent Prevention:
+   - Regression unit/integration tests, synthetic monitors, and load test benchmarks.

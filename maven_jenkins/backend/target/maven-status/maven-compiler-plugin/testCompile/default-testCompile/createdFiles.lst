@@ -1,0 +1,4 @@
+com/opsmind/auth/AuthServiceTest.class
+com/opsmind/service/ServiceManagementTest.class
+com/opsmind/ai/AIAnalysisServiceTest.class
+com/opsmind/OpsMindApplicationTests.class

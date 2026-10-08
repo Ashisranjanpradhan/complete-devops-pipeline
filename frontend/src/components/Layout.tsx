@@ -6,7 +6,7 @@ import { WorkspaceTabs } from './WorkspaceTabs';
 
 export const Layout: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col layout-container transition-colors duration-200">
       <Navbar />
       <div className="flex flex-1">
         <Sidebar />

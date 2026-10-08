@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Settings as SettingsIcon, Shield, Sliders, Bell, Server, Database, Key, CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
+import { Settings as SettingsIcon, Shield, Sliders, Bell, Server, Database, Key, CheckCircle, AlertCircle, RefreshCw, Palette, Leaf, Moon, Sparkles } from 'lucide-react';
 import { getBackendUrl, setBackendUrl } from '../services/api';
+import { useTheme } from '../context/ThemeContext';
 import axios from 'axios';
 
 export const Settings: React.FC = () => {
+  const { theme, setTheme } = useTheme();
   const [backendUrlInput, setBackendUrlInput] = useState<string>(getBackendUrl());
   const [testStatus, setTestStatus] = useState<'idle' | 'testing' | 'success' | 'error'>('idle');
   const [testMsg, setTestMsg] = useState<string>('');
@@ -112,6 +114,72 @@ export const Settings: React.FC = () => {
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* UI Theme & Appearance */}
+      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
+            <Palette size={16} className="text-emerald-400" />
+            <span>UI Theme & Appearance</span>
+          </h3>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+            Active: {theme === 'light-green' ? 'Light Green' : theme === 'emerald-dark' ? 'Emerald Dark' : 'Slate Dark'}
+          </span>
+        </div>
+        <p className="text-xs text-slate-400">
+          Customize the platform aesthetic. The default is set to the lighter green shade in the background.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+          <button
+            type="button"
+            onClick={() => setTheme('light-green')}
+            className={`p-3.5 rounded-xl border text-left flex items-start space-x-3 transition-all ${
+              theme === 'light-green'
+                ? 'bg-emerald-500/20 border-emerald-500 text-emerald-950 font-semibold shadow-sm ring-2 ring-emerald-500/40'
+                : 'bg-slate-950/60 border-slate-800 hover:border-slate-700 text-slate-300'
+            }`}
+          >
+            <Leaf size={18} className="text-emerald-500 shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-semibold">Light Green (Default)</div>
+              <div className="text-[11px] opacity-75 mt-0.5">Soothing lighter green shade in the background</div>
+            </div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setTheme('emerald-dark')}
+            className={`p-3.5 rounded-xl border text-left flex items-start space-x-3 transition-all ${
+              theme === 'emerald-dark'
+                ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold shadow-sm ring-2 ring-emerald-500/40'
+                : 'bg-slate-950/60 border-slate-800 hover:border-slate-700 text-slate-300'
+            }`}
+          >
+            <Sparkles size={18} className="text-emerald-400 shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-semibold">Emerald Dark</div>
+              <div className="text-[11px] opacity-75 mt-0.5">Lighter green dark theme with ambient radiance</div>
+            </div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setTheme('slate-dark')}
+            className={`p-3.5 rounded-xl border text-left flex items-start space-x-3 transition-all ${
+              theme === 'slate-dark'
+                ? 'bg-emerald-500/20 border-emerald-500 text-white font-semibold shadow-sm ring-2 ring-emerald-500/40'
+                : 'bg-slate-950/60 border-slate-800 hover:border-slate-700 text-slate-300'
+            }`}
+          >
+            <Moon size={18} className="text-slate-400 shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-semibold">Slate Dark</div>
+              <div className="text-[11px] opacity-75 mt-0.5">Classic deep midnight slate theme</div>
+            </div>
+          </button>
         </div>
       </div>
 

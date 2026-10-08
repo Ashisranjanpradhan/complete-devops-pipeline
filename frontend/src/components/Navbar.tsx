@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { LogOut, Search, PlayCircle, ShieldCheck } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { LogOut, Search, PlayCircle, ShieldCheck, Leaf, Moon, Sparkles } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DemoOutageModal } from './DemoOutageModal';
 
 export const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
+  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+
+  const cycleTheme = () => {
+    if (theme === 'light-green') setTheme('emerald-dark');
+    else if (theme === 'emerald-dark') setTheme('slate-dark');
+    else setTheme('light-green');
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +66,36 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-3">
+          {/* Theme Selector Toggle */}
+          <button
+            onClick={cycleTheme}
+            title={`Theme: ${theme}. Click to switch theme.`}
+            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all shadow-sm ${
+              theme === 'light-green'
+                ? 'bg-emerald-100/90 hover:bg-emerald-200/90 text-emerald-900 border-emerald-300'
+                : theme === 'emerald-dark'
+                ? 'bg-emerald-950/80 hover:bg-emerald-900/80 text-emerald-300 border-emerald-700/80'
+                : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
+            }`}
+          >
+            {theme === 'light-green' ? (
+              <>
+                <Leaf size={14} className="text-emerald-700" />
+                <span className="hidden sm:inline">Light Green</span>
+              </>
+            ) : theme === 'emerald-dark' ? (
+              <>
+                <Sparkles size={14} className="text-emerald-400" />
+                <span className="hidden sm:inline">Emerald Dark</span>
+              </>
+            ) : (
+              <>
+                <Moon size={14} className="text-slate-400" />
+                <span className="hidden sm:inline">Slate Dark</span>
+              </>
+            )}
+          </button>
+
           {/* Flagship Demo Outage Simulation Button (Section 90 & 91) */}
           <button
             onClick={() => setIsDemoModalOpen(true)}

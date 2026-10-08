@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Layout } from './components/Layout';
 import { Login } from './pages/Login';
@@ -18,8 +19,9 @@ import { Settings } from './pages/Settings';
 
 export const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <HashRouter>
+    <ThemeProvider>
+      <AuthProvider>
+        <HashRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
 
@@ -44,6 +46,7 @@ export const App: React.FC = () => {
         </Routes>
       </HashRouter>
     </AuthProvider>
+    </ThemeProvider>
   );
 };
 

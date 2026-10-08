@@ -2,7 +2,7 @@
 
 Welcome to the **Complete DevOps Pipeline** project repository. This repository hosts **OpsMind AI**, an enterprise-grade AI-powered DevOps operations platform that tracks software deployments, monitors service health, manages incidents, correlates observability data, and leverages AI for root-cause analysis and remediation.
 
-## 🚀 Platform Overview
+##Platform Overview
 
 - **Core Application:** [maven_jenkins/](maven_jenkins/)
 - **Backend:** Spring Boot 3.3.4 (Java 17/21/25), Spring Security (JWT), Spring Data JPA, Flyway, Actuator, Micrometer.
@@ -14,7 +14,7 @@ Welcome to the **Complete DevOps Pipeline** project repository. This repository 
 - **Infrastructure as Code:** Terraform modules (Network VPC, RDS PostgreSQL, EC2 Compute, CloudWatch Monitoring).
 - **Containerization:** Multi-stage Docker builds and full 5-service `docker-compose.yml`.
 
-## 📖 Quick Links & Documentation
+##Quick Links & Documentation
 
 - [Full Architecture & Documentation](maven_jenkins/README.md)
 - [Requirements Specification](maven_jenkins/docs/requirements.md)
@@ -24,7 +24,7 @@ Welcome to the **Complete DevOps Pipeline** project repository. This repository 
 - [Deployment & Operations Guide](maven_jenkins/docs/deployment.md)
 - [Security Hardening & RBAC](maven_jenkins/docs/security.md)
 
-## ⚡ Quick Start
+## Quick Start
 
 ```bash
 cd maven_jenkins

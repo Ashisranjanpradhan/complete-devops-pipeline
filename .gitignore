@@ -1,12 +1,40 @@
+# Operating System Files
 .DS_Store
 Thumbs.db
-Git/
+
+# Secrets & Environment Configurations (NEVER COMMIT)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Build Artifacts & Dependencies
+target/
 **/target/
+dist/
 **/dist/
 node_modules/
+**/node_modules/
 *.class
 *.jar
+*.war
+
+# Terraform State Files & Cache
 *.tfstate
 *.tfstate.*
 .terraform/
 .terraform.lock.hcl
+crash.log
+
+# IDE & Editor Directories
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Git Submodule / Local Folders
+Git/
+.github/workflows/

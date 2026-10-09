@@ -3,24 +3,24 @@
 @tailwind utilities;
 
 :root, [data-theme="light-green"] {
-  --bg-app: #eef8f2;
-  --bg-app-gradient: radial-gradient(circle at 50% 0%, #e2f5e8 0%, #ebf8f1 45%, #dff2e6 100%);
-  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-app: #dcfce7;
+  --bg-app-gradient: radial-gradient(circle at 50% 0%, #bbf7d0 0%, #d1fae5 45%, #dcfce7 100%);
+  --bg-card: rgba(255, 255, 255, 0.96);
   --bg-card-hover: #ffffff;
-  --bg-card-subtle: #f0fbf4;
-  --bg-header: rgba(242, 251, 245, 0.95);
-  --bg-sidebar: #f2faf5;
-  --bg-tabs: rgba(236, 248, 240, 0.95);
+  --bg-card-subtle: #f0fdf4;
+  --bg-header: rgba(255, 255, 255, 0.96);
+  --bg-sidebar: rgba(240, 253, 244, 0.96);
+  --bg-tabs: rgba(220, 252, 231, 0.96);
   --bg-input: #ffffff;
-  --bg-hover: #e3f5ea;
-  --border-color: #cde6d5;
-  --border-subtle: #dcf0e3;
-  --text-primary: #0f291e;
-  --text-secondary: #275240;
-  --text-muted: #507865;
+  --bg-hover: #bbf7d0;
+  --border-color: #86efac;
+  --border-subtle: #bbf7d0;
+  --text-primary: #064e3b;
+  --text-secondary: #065f46;
+  --text-muted: #047857;
   --accent-green: #059669;
-  --accent-green-bg: rgba(16, 185, 129, 0.15);
-  --shadow-card: 0 4px 20px -2px rgba(16, 185, 129, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --accent-green-bg: rgba(16, 185, 129, 0.2);
+  --shadow-card: 0 4px 20px -2px rgba(5, 150, 105, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="emerald-dark"] {
@@ -65,15 +65,20 @@
   --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
 }
 
-body {
+html, body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: var(--bg-app);
-  background-image: var(--bg-app-gradient);
-  background-attachment: fixed;
+  background-color: var(--bg-app) !important;
+  background-image: var(--bg-app-gradient) !important;
+  background-attachment: fixed !important;
   color: var(--text-primary);
   min-height: 100vh;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: transparent !important;
 }
 
 /* Custom scrollbars */
@@ -96,10 +101,14 @@ body {
 }
 
 /* ========================================================
-   LIGHT GREEN THEME OVERRIDES (Default)
+   LIGHT GREEN THEME (Default)
+   Comprehensive overrides ensuring full green background
    ======================================================== */
-[data-theme="light-green"] .bg-slate-950 {
-  background-color: transparent !important;
+[data-theme="light-green"] body,
+[data-theme="light-green"] #root,
+[data-theme="light-green"] .layout-container {
+  background-color: var(--bg-app) !important;
+  background-image: var(--bg-app-gradient) !important;
   color: var(--text-primary) !important;
 }
 
@@ -113,56 +122,53 @@ body {
   border-color: var(--border-color) !important;
 }
 
-[data-theme="light-green"] .bg-slate-900\/90,
-[data-theme="light-green"] .bg-slate-900\/95,
-[data-theme="light-green"] .bg-slate-900\/80,
-[data-theme="light-green"] .bg-slate-900\/60,
-[data-theme="light-green"] .bg-slate-900 {
+/* Match all elements with dark slate background classes */
+[data-theme="light-green"] [class*="bg-slate-950"] {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light-green"] [class*="bg-slate-9"] {
   background-color: var(--bg-card) !important;
   border-color: var(--border-color) !important;
   color: var(--text-primary) !important;
   box-shadow: var(--shadow-card) !important;
 }
 
-[data-theme="light-green"] .bg-slate-800\/40,
-[data-theme="light-green"] .bg-slate-800\/60,
-[data-theme="light-green"] .bg-slate-800\/80,
-[data-theme="light-green"] .bg-slate-800 {
+[data-theme="light-green"] [class*="bg-slate-8"] {
   background-color: var(--bg-card-subtle) !important;
   border-color: var(--border-subtle) !important;
   color: var(--text-primary) !important;
 }
 
-[data-theme="light-green"] .hover\:bg-slate-800:hover,
-[data-theme="light-green"] .hover\:bg-slate-700:hover,
-[data-theme="light-green"] .hover\:bg-slate-800\/60:hover {
+[data-theme="light-green"] [class*="bg-slate-7"] {
+  background-color: #dcfce7 !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light-green"] [class*="hover:bg-slate-8"]:hover,
+[data-theme="light-green"] [class*="hover:bg-slate-7"]:hover {
   background-color: var(--bg-hover) !important;
 }
 
-[data-theme="light-green"] .border-slate-800,
-[data-theme="light-green"] .border-slate-800\/80,
-[data-theme="light-green"] .border-slate-800\/60,
-[data-theme="light-green"] .border-slate-700,
-[data-theme="light-green"] .border-slate-700\/40,
-[data-theme="light-green"] .border-slate-700\/80 {
+/* Borders */
+[data-theme="light-green"] [class*="border-slate-"] {
   border-color: var(--border-color) !important;
 }
 
-[data-theme="light-green"] .text-white {
+/* Text Colors */
+[data-theme="light-green"] [class*="text-white"],
+[data-theme="light-green"] [class*="text-slate-100"],
+[data-theme="light-green"] [class*="text-slate-200"],
+[data-theme="light-green"] [class*="text-slate-300"] {
   color: var(--text-primary) !important;
 }
 
-[data-theme="light-green"] .text-slate-100,
-[data-theme="light-green"] .text-slate-200,
-[data-theme="light-green"] .text-slate-300 {
-  color: var(--text-primary) !important;
-}
-
-[data-theme="light-green"] .text-slate-400 {
+[data-theme="light-green"] [class*="text-slate-400"] {
   color: var(--text-secondary) !important;
 }
 
-[data-theme="light-green"] .text-slate-500 {
+[data-theme="light-green"] [class*="text-slate-500"] {
   color: var(--text-muted) !important;
 }
 
@@ -182,6 +188,7 @@ body {
   color: #e11d48 !important;
 }
 
+/* Inputs & Form Elements */
 [data-theme="light-green"] input,
 [data-theme="light-green"] textarea,
 [data-theme="light-green"] select {
@@ -191,7 +198,7 @@ body {
 }
 
 [data-theme="light-green"] code {
-  background-color: #e5f5ea !important;
+  background-color: #dcfce7 !important;
   color: #065f46 !important;
 }
 
@@ -201,20 +208,22 @@ body {
   border-color: #bae6fd !important;
 }
 
-[data-theme="light-green"] .divide-slate-800 > :not([hidden]) ~ :not([hidden]),
-[data-theme="light-green"] .divide-slate-800\/60 > :not([hidden]) ~ :not([hidden]) {
+[data-theme="light-green"] [class*="divide-slate-"] > :not([hidden]) ~ :not([hidden]) {
   border-color: var(--border-subtle) !important;
 }
 
 [data-theme="light-green"] tbody tr:hover {
-  background-color: rgba(226, 245, 234, 0.45) !important;
+  background-color: rgba(187, 247, 208, 0.45) !important;
 }
 
 /* ========================================================
-   EMERALD DARK THEME OVERRIDES
+   EMERALD DARK THEME
    ======================================================== */
-[data-theme="emerald-dark"] .bg-slate-950 {
-  background-color: transparent !important;
+[data-theme="emerald-dark"] body,
+[data-theme="emerald-dark"] #root,
+[data-theme="emerald-dark"] .layout-container {
+  background-color: var(--bg-app) !important;
+  background-image: var(--bg-app-gradient) !important;
   color: var(--text-primary) !important;
 }
 
@@ -228,28 +237,22 @@ body {
   border-color: var(--border-color) !important;
 }
 
-[data-theme="emerald-dark"] .bg-slate-900\/90,
-[data-theme="emerald-dark"] .bg-slate-900\/95,
-[data-theme="emerald-dark"] .bg-slate-900\/80,
-[data-theme="emerald-dark"] .bg-slate-900\/60,
-[data-theme="emerald-dark"] .bg-slate-900 {
+[data-theme="emerald-dark"] [class*="bg-slate-950"] {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="emerald-dark"] [class*="bg-slate-9"] {
   background-color: var(--bg-card) !important;
   border-color: var(--border-color) !important;
   box-shadow: var(--shadow-card) !important;
 }
 
-[data-theme="emerald-dark"] .bg-slate-800\/40,
-[data-theme="emerald-dark"] .bg-slate-800\/60,
-[data-theme="emerald-dark"] .bg-slate-800\/80,
-[data-theme="emerald-dark"] .bg-slate-800 {
+[data-theme="emerald-dark"] [class*="bg-slate-8"] {
   background-color: var(--bg-card-subtle) !important;
   border-color: var(--border-subtle) !important;
 }
 
-[data-theme="emerald-dark"] .border-slate-800,
-[data-theme="emerald-dark"] .border-slate-800\/80,
-[data-theme="emerald-dark"] .border-slate-800\/60,
-[data-theme="emerald-dark"] .border-slate-700,
-[data-theme="emerald-dark"] .border-slate-700\/40 {
+[data-theme="emerald-dark"] [class*="border-slate-"] {
   border-color: var(--border-color) !important;
 }
